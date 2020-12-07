@@ -4,24 +4,24 @@
     <thead>
       <tr>
         <th scope="col" (click)="setOrder('given_name')">Player Name
-          <span [hidden]="reverse">▼</span
-            ><span [hidden]="!reverse">▲</span>
+          <span *ngIf="propertyName == 'given_name'" [hidden]="reverse">▼</span
+            ><span *ngIf="propertyName == 'given_name'" [hidden]="!reverse">▲</span>
         </th>
         <th scope="col" (click)="setOrder('runs')">Runs
-          <span [hidden]="reverse">▼</span
-            ><span [hidden]="!reverse">▲</span>
+          <span *ngIf="propertyName == 'runs'" [hidden]="reverse">▼</span
+            ><span *ngIf="propertyName == 'runs'" [hidden]="!reverse">▲</span>
         </th>
         <th scope="col" (click)="setOrder('home_runs')">Home Runs
-          <span [hidden]="reverse">▼</span
-            ><span [hidden]="!reverse">▲</span>
+          <span *ngIf="propertyName == 'home_runs'" [hidden]="reverse">▼</span
+            ><span *ngIf="propertyName == 'home_runs'" [hidden]="!reverse">▲</span>
         </th>
         <th scope="col" (click)="setOrder('avg')">Average
-          <span [hidden]="reverse">▼</span
-            ><span [hidden]="!reverse">▲</span>
+          <span *ngIf="propertyName == 'avg'" [hidden]="reverse">▼</span
+            ><span *ngIf="propertyName == 'avg'" [hidden]="!reverse">▲</span>
         </th>
         <th scope="col" (click)="setOrder('ops')">OPS
-          <span [hidden]="reverse">▼</span
-            ><span [hidden]="!reverse">▲</span>
+          <span *ngIf="propertyName == 'ops'" [hidden]="reverse">▼</span
+            ><span *ngIf="propertyName == 'ops'" [hidden]="!reverse">▲</span>
         </th>
       </tr>
     </thead>

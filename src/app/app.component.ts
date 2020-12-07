@@ -15,9 +15,20 @@ am4core.options.commercialLicense = true;
 export class AppComponent implements OnInit  {
 
   data: any = [];
-  p: any;
-  order: any = 'given_name';
-  reverse: any = false;
+  page: any = 1;
+  count: any = 0;
+  propertyName: any = 'avg';
+  reverse: any = true;
+
+  getRequestParams(page): any {
+    let params = {};
+    if (page) {
+      params[`page`] = page;
+    }
+    
+    return params;
+  }
+
   constructor(private apiService: ApiService) {
 
   }
@@ -27,19 +38,27 @@ export class AppComponent implements OnInit  {
   }
 
   getData() {
-    const subscription: Subscription =  this.apiService.getData().subscribe((response) => {
-      this.data = response;
+    const params = this.getRequestParams(this.page);
+    const subscription: Subscription =  this.apiService.getData(params).subscribe((response) => {
+      this.data = response['players'];
+      this.count = response['totalItems'];
     }, () => {
        subscription.unsubscribe();
     });
   }
 
-  setOrder(value: string) {
-    if (this.order === value) {
-      this.reverse = !this.reverse;
-    }
+  handlePageChange(event): void {
+    this.page = event;
+    this.getData();
+  }
 
-    this.order = value;
+  setOrder(value: string) {
+    this.reverse = (this.propertyName === value) ? !this.reverse : false;
+    // if (this.propertyName === value) {
+    //   this.reverse = !this.reverse;
+    // }
+
+    this.propertyName = value;
   }
 
 }

@@ -26,16 +26,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of data | paginate: { itemsPerPage: 10, currentPage: p } | orderBy: order : reverse : true  ">
-        <td>{{item['given_name'] ? item['given_name'] : 'N/A'}}</td>
-        <td>{{item['runs'] ? item['runs'] : 'N/A'}}</td>
-        <td>{{item['home_runs'] ? item['home_runs'] : 'N/A'}}</td>
-        <td>{{item['avg'] ? item['avg'] : 'N/A'}}</td>
-        <td>{{item['ops'] ? item['ops'] : 'N/A'}}</td>
+      <!-- <tr *ngFor="let item of data | paginate: { itemsPerPage: 25, currentPage: page, totalItems: count } | orderBy: order : reverse : true "> -->
+      <tr *ngFor="let item of data | paginate: { itemsPerPage: 25, currentPage: page, totalItems: count } | orderBy:propertyName:reverse ">
+        <td>{{item['given_name'] != null ? item['given_name'] : 'N/A'}}</td>
+        <td>{{item['runs'] != null ? item['runs'] : 'N/A'}}</td>
+        <td>{{item['home_runs'] != null ? item['home_runs'] : 'N/A'}}</td>
+        <td>{{item['avg'] != null ? item['avg'] : 'N/A'}}</td>
+        <td>{{item['ops'] != null ? item['ops'] : 'N/A'}}</td>
       </tr>
     
     </tbody>
   </table>
 
-  <pagination-controls *ngIf="data?.length != 0" class="text-center" (pageChange)="p = $event"></pagination-controls>
+  <pagination-controls *ngIf="data?.length != 0" class="text-center" (pageChange)="handlePageChange($event)"></pagination-controls>
 </div>

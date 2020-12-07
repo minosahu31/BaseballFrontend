@@ -11,11 +11,12 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getData() {
-    return this.httpClient.get(`${environment.apiEndPoint}get_players`)
+  getData(params) {
+    return this.httpClient.get(`${environment.apiEndPoint}get_players`, {params})
     .pipe(
       map ((response) => {
-        return response['players'];
+        // return response['players'];
+        return response;
       })
     );
 }
